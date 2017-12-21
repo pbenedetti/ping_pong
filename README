@@ -1,0 +1,62 @@
+Questa directory contiene una serie di script Bash per la generazione
+di diagrammi di Throughput in funzione della dimensione dei messaggi
+per le versioni UDP e TCP di ping-pong.
+
+USO:
+lanciare lo script mkfile.bash con due parametri: la dimensione massima
+dei messaggi UDP e TCP in Byte. Questo genera automaticamente un Makefile
+nella directory ../data. Successivamente, lanciando da questa directory
+il comando make vengono effettuate tutte le misure mancanti (gli esperimenti
+non vengono ripetuti se non dopo la cancellazione del relativo file di
+risultati) e poi viene creato il diagramma sotto forma di immagine PNG
+utilizzando gnuplot.
+
+
+ESEMPIO:
+
+> ./mkfile.bash 32768 524288
+> cd ../data
+> make
+> eog throughput.png &
+
+
+
+
+toor@linuxdisi:~$ cd Desktop/
+toor@linuxdisi:~/Desktop$ cd udp_ping_finale/scripts
+toor@linuxdisi:~/Desktop/udp_ping_finale/scripts$ chmod 700 mkfile.bash
+toor@linuxdisi:~/Desktop/udp_ping_finale/scripts$ ./mkfile.bash 32768 524288
+toor@linuxdisi:~/Desktop/udp_ping_finale/scripts$ cd ../data
+toor@linuxdisi:~/Desktop/udp_ping_finale/data$ ls
+Makefile
+toor@linuxdisi:~/Desktop/udp_ping_finale/data$ make
+../scripts/tcp_run.bash 32
+../scripts/tcp_run.bash 64
+../scripts/tcp_run.bash 128
+../scripts/tcp_run.bash 256
+../scripts/tcp_run.bash 512
+../scripts/tcp_run.bash 1024
+../scripts/tcp_run.bash 2048
+../scripts/tcp_run.bash 4096
+../scripts/tcp_run.bash 8192
+../scripts/tcp_run.bash 16384
+../scripts/tcp_run.bash 32768
+../scripts/tcp_run.bash 65536
+../scripts/tcp_run.bash 131072
+../scripts/tcp_run.bash 262144
+../scripts/tcp_run.bash 524288
+../scripts/collect_throughput.bash tcp
+../scripts/udp_run.bash 32
+../scripts/udp_run.bash 64
+../scripts/udp_run.bash 128
+../scripts/udp_run.bash 256
+../scripts/udp_run.bash 512
+../scripts/udp_run.bash 1024
+../scripts/udp_run.bash 2048
+../scripts/udp_run.bash 4096
+../scripts/udp_run.bash 8192
+../scripts/udp_run.bash 16384
+../scripts/udp_run.bash 32768
+eog throughtput.png &
+../scripts/collect_throughput.bash udp
+../scripts/gplot.bash
